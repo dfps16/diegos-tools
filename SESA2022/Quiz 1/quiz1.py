@@ -37,6 +37,8 @@ def shape_boundary_layer(v_profile):
     return delta_99
 
 def drag_per_unit_span(v_profile, c, Re_t):
+
+
     aa, ab = v_profile.columns # naming columns
     y_mm = v_profile[aa]
     u_ms = v_profile[ab]
@@ -60,11 +62,21 @@ def drag_per_unit_span(v_profile, c, Re_t):
 
     return D_prime
 
+def total_drag_LBL(b, c, nu, rho, U):
+    Re = (U * c) / nu
+    D_total = 0.5 * rho * U**2 * b * c * (2.656/np.sqrt(Re))
+    return D_total
 
-# Input velocity profile data
-data = pd.read_excel('/Users/dfps16/Documents/GitHub/diegos-tools/SESA2022/Quiz 1/Q5.xlsx')
-Re_t = 3 * 1e5
-c = 0.5
 
-D_prime = drag_per_unit_span(data, c, Re_t)
-print("Drag per unit span: ", D_prime, " N/m")
+
+# Input data and solve Qs
+
+v_profile = pd.read_excel('/Users/dfps16/Documents/GitHub/diegos-tools/SESA2022/Quiz 1/Q5.xlsx')
+c = 2.2
+b = 8.5
+U = 67.1
+nu = 15.29 * 1e-6
+rho = 1.19
+
+D_total = total_drag_LBL(b, c, nu, rho, U)
+print("Drag: ", D_total, " N")
