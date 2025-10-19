@@ -58,25 +58,44 @@ def drag_per_unit_span(v_profile, c, Re_t):
     print("x_t: ", x_t, " m")
     print("x_0: ", x_0, " m")
 
-    D_prime = rho_air * U_inf**2 * (0.037 * (c - x_0) / (U_inf*(c - x_0)/nu_air)**0.2)
+    D = 2 * rho_air * U_inf**2 * (0.037 * (c - x_0) / (U_inf*(c - x_0)/nu_air)**0.2)
 
-    return D_prime
+    return D
 
 def total_drag_LBL(b, c, nu, rho, U):
     Re = (U * c) / nu
     D_total = 0.5 * rho * U**2 * b * c * (2.656/np.sqrt(Re))
     return D_total
 
+def drag_coeff(c, U_inf, rho, nu):
+    x_T = 0.2 * c
 
+    Re_xt = (U_inf * c) / nu 
 
+    print("Re at transition: ", Re_xt)
+
+    Re_cxt = (U_inf * (c - x_T)) / nu
+
+    x_0 = x_T * (1 - 38.22 * Re_xt**(-3/8)) # Working out the virtual origin
+    print("Virtual origin is at: ", np.round(x_0, 3), "m, or ", np.round(x_0/c, 2), "c")
+
+    C_F = 0.074 * (1 - x_0 / c) * Re_cxt**(-1/5)
+    C_D = np.round(2*C_F, 4)
+
+    return C_D
+
+def drag_oneside(c, x_0, rho, U_inf, Re_c):
+    nu = (U_inf * c) / Re_c
+    D_prime = rho * U_inf**2 * (0.037 * (c - x_0) / (U_inf * (c- x_0) / nu)**(1/5))
+    return D_prime
 # Input data and solve Qs
 
 v_profile = pd.read_excel('/Users/dfps16/Documents/GitHub/diegos-tools/SESA2022/Quiz 1/Q5.xlsx')
-c = 2.2
-b = 8.5
-U = 67.1
-nu = 15.29 * 1e-6
-rho = 1.19
+c = 3
+U_inf = 13
+rho = 1.27
+Re_c = 845000
+x_0 = 1
 
-D_total = total_drag_LBL(b, c, nu, rho, U)
-print("Drag: ", D_total, " N")
+D_prime = drag_oneside(c, x_0, rho, U_inf, Re_c)
+print("D is: ", D_prime)
