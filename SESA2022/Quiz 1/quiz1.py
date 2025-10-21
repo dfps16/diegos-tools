@@ -91,11 +91,11 @@ def drag_oneside(c, x_0, rho, U_inf, Re_c):
 # Input data and solve Qs
 
 v_profile = pd.read_excel('/Users/dfps16/Documents/GitHub/diegos-tools/SESA2022/Quiz 1/Q5.xlsx')
-c = 3
-U_inf = 13
-rho = 1.27
-Re_c = 845000
-x_0 = 1
+c = 0
+U_inf = 0
+rho = 0
+Re_c = 0
+x_0 = 0
 
 D_prime = drag_oneside(c, x_0, rho, U_inf, Re_c)
 print("D is: ", D_prime)
