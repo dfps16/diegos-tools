@@ -122,5 +122,5 @@ def drag_one_side(c, x_0, rho, u_inf, re_c):
 # Input data and solve Qs
 
 data = pd.read_excel(
-    '/Users/dfps16/Documents/GitHub/diegos-tools/SESA2022/Quiz 1/Q5.xlsx'
+    '/Usgers/dfps16/Documents/GitHub/diegos-tools/SESA2022/Quiz 1/Q5.xlsx'
 )
