@@ -112,8 +112,8 @@ def drag_coeff(c, u_inf, rho, nu):
     return c_d
 
 
-def drag_one_side(c, x_0, rho, u_inf, Re_c):
-    nu = (u_inf * c) / Re_c
+def drag_one_side(c, x_0, rho, u_inf, re_c):
+    nu = (u_inf * c) / re_c
     d_prime = rho * u_inf**2 * (0.037 * (c - x_0) /
                                 (u_inf * (c - x_0) / nu) ** (1 / 5))
     return d_prime
@@ -121,4 +121,6 @@ def drag_one_side(c, x_0, rho, u_inf, Re_c):
 
 # Input data and solve Qs
 
-data = pd.read_excel('/Users/dfps16/Documents/GitHub/diegos-tools/SESA2022/Quiz 1/Q5.xlsx')
+data = pd.read_excel(
+    '/Users/dfps16/Documents/GitHub/diegos-tools/SESA2022/Quiz 1/Q5.xlsx'
+)
