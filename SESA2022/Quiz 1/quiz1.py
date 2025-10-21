@@ -12,7 +12,7 @@ def shape_boundary_layer(v_profile):
     """
     Function to find the 99 and momentum thickness of the BL,
     compute the shape factor, and ascertain the nature of the
-    boundary layer. Takes an xlsx file with two columns of data.
+    boundary layer. Takes a xlsx file with two columns of data.
     Column 1 is the distance along the airfoil in mm
     and column 2 the velocity along the airfoil in m/s.
     """
@@ -43,7 +43,7 @@ def shape_boundary_layer(v_profile):
 
     # Plot velocity profile in non-dimensional units
     plt.figure(2)
-    plt.plot(u_ms/U_inf, y_mm/delta_99, 'o')
+    plt.plot(u_ms/u_inf, y_mm/delta_99, 'o')
 
     plt.show()
     return delta_99
@@ -107,7 +107,7 @@ def drag_coeff(c, u_inf, rho, nu):
           np.round(x_0/c, 2), "c")
 
     c_f = 0.074 * (1 - x_0 / c) * Re_cxt**(-1/5)
-    c_d = np.round(2*c_d, 4)
+    c_d = np.round(2*c_f, 4)
 
     return c_d
 
