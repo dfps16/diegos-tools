@@ -1,0 +1,15 @@
+Variable,Manometer Reading (mm)
+P_tot,230
+P_static,193
+LWR x/c = 0.0159,210
+LWR x/c = 0.0714,176
+LWR x/c = 0.175,168
+LWR x/c = 0.317,170
+LWR x/c = 0.510,176
+LWR x/c = 0.698,180
+UPPER x/c = 0.0317,172
+UPPER x/c = 0.119,156
+UPPER x/c = 0.230,158
+UPPER x/c = 0.413,166
+UPPER x/c = 0.603,172
+UPPER x/c = 0.794,184
