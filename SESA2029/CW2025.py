@@ -65,7 +65,7 @@ if len(ID)==8:
     print('Half-wing aspect ratio = ',ARhalf)
     TR='0.'+str(int(3+int(ID[7])/2))
     print('Taper ratio = ',TR)
-    Velocity=35+int(ID[1])+int(ID[5])    
+    Velocity = 35+int(ID[1])+int(ID[5])
     print('Velocity = ',Velocity,' m/s')
 
     # Find the zero lift angle using thin aerofoil theory (see SESA2022 for theory)
