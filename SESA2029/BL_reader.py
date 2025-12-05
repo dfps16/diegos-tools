@@ -3,6 +3,9 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from scipy.optimize import fsolve
 
+rho = 1.225  # kg/m^3
+nu = 1.7894e-5  # kg/m.s
+mu = rho * nu  # kg/m.s
 
 def shape_boundary_layer(v_profile):
     """
@@ -16,7 +19,7 @@ def shape_boundary_layer(v_profile):
     y_mm = v_profile[aa]
     u_ms = v_profile[ab]
     u_inf = u_ms.max()  # getting freestream velocity
-
+    tau_w = mu*(u_ms[1]-u_ms[0])/(y_mm[1]-y_mm[0])
     # Find boundary layer thickness
     delta_99 = np.interp(0.99, u_ms / u_inf, y_mm)  # 99% thickness
     theta = np.trapezoid(u_ms / u_inf *
@@ -27,9 +30,9 @@ def shape_boundary_layer(v_profile):
     plt.figure(1)
     plt.plot(u_ms, y_mm, 'o')
 
-    print("BL thickness (delta_99): ", np.round(delta_99, 3), " mm")
-    print("BL thickness (theta): ", np.round(theta, 3), " mm")
-    print("BL thickness (delta_star): ", np.round(delta_star, 3), " mm")
+    print("BL thickness (delta_99): ", np.round(delta_99*1000, 3), " mm")
+    print("BL thickness (theta): ", np.round(theta*1000, 3), " mm")
+    print("BL thickness (delta_star): ", np.round(delta_star*1000, 3), " mm")
 
     # Calculate shape factor
     H = delta_star / theta
@@ -40,9 +43,9 @@ def shape_boundary_layer(v_profile):
         print("BL is Turbulent")
         # Turbulent BL metrics
         L = 1
-        c_f = 2 * 0.001 * theta / L
-        u_tau = u_inf * np.sqrt(c_f/2)
-        print("Skin-Friction Coefficient: ", np.round(c_f, 3))
+        c_f = 2 * theta / L
+        u_tau = np.sqrt(tau_w / rho)
+        print("Skin-Friction Coefficient: ", np.round(c_f*1000, 3))
         print("U_tau is: ", np.round(u_tau, 3), "m/s")
 
     # Plot velocity profile in non-dimensional units
@@ -53,6 +56,6 @@ def shape_boundary_layer(v_profile):
     return delta_99, theta, H
 
 data = pd.read_excel(
-    '/Users/dfps16/Documents/GitHub/diegos-tools/SESA2029/BLLamAdi.xlsx'
+    'OmegaKplot.xlsx'
 )
 delta_99, theta, H = shape_boundary_layer(data)

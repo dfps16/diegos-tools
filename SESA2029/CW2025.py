@@ -54,7 +54,7 @@ def lifting_line(alpha,AR,tr,a0,alpha_zero,n):
 # Start of main program
 #------------------------------------------------------------------------------
 # First get the airfoil properties from ID
-ID=input('\nEnter student ID (must be 8 chararacters): ')
+ID= '36072591'
 if len(ID)==8:
     NACA1=int(1+2*int(ID[2])/5)
     NACA2=int(3+2*int(ID[3])/5)
