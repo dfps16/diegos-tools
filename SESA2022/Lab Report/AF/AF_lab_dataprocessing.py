@@ -248,7 +248,7 @@ for index, data in enumerate(files):
     # print(data["angle"], cl, Re)
     angles.append(data["angle"])
     cl_values.append(cl)
-plt.savefig(f'CpDistrib.png', dpi=600)
+plt.savefig('CpDistrib.png', dpi=600)
 angles = np.array(angles) * np.pi / 180
 cl_values = np.array(cl_values)
 
@@ -280,7 +280,7 @@ if gr_cl:
     ax2.plot(alpha_xflr, cl_xflr,
              color='purple',
              linestyle='-',
-             label=f'XFOIL',
+             label='XFOIL',
              )
     ax2.plot(alpha_xflr, np.polyval(cxflr, alpha_xflr),
              color='purple',
