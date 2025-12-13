@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-data = pd.read_csv("LunaAlt.txt", sep="   ")
+data = pd.read_csv("LunaAlt.txt", sep="         ")
 
 time, altitude = data.columns
 
